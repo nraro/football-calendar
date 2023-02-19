@@ -10,6 +10,9 @@
   <body>
     <div class="background-wrapper"></div>
     <div class="calendar-wrapper">
+      <!-- <h1>Hai la fotbal</h1> -->
+
+
       {% if err != '' %}
       <p class="alreadySelectedErr">{{err}}</p>
       {% endif %}
@@ -30,19 +33,51 @@
       <p class="error hidden calendarError">Te rugam sa alegi maxim 3 intervale</p>
       <p class="error hidden intervalError">Te rugam sa alegi cel putin un interval!</p>
       <div class="calendar-bottom-wrapper">
-        <form action="/api/users" method="POST">
-          <input type="text" id="userName" name="userName" placeholder="Spune-ne cum te numesti!">
-          <p class="error hidden inputError"></p>
-          <input type="text" class='interval' id="interval-1"  name="interval-1">
-          <input type="text" class='interval' id="interval-2"  name="interval-2">
-          <input type="text" class='interval' id="interval-3"  name="interval-3">
-          <button type="submit" id="submit">Valideaza</button>
-        </form> 
+        <div class="calendar-bottom-left-wrapper">
+          <h5 class="mostVoted">Cele mai votate intervale sunt:</h5>
+            <button class="accordion">{{top[0][0]}} - {{top[0][1]}} cu {{top[0][2]}} voturi</button>
+            <div class="panel">
+              {% for x in i1 %}
+                {% for j in x %}
+                  <p>{{j}}</p>
+                {% endfor %}
+              {% endfor %}
+            </div>
+
+            <button class="accordion">{{top[1][0]}} - {{top[1][1]}} cu {{top[1][2]}} voturi</button>
+            <div class="panel">
+              {% for x in i2 %}
+                {% for j in x %}
+                  <p>{{j}}</p>
+                {% endfor %}
+              {% endfor %}
+            </div>
+
+            <button class="accordion">{{top[2][0]}} - {{top[2][1]}} cu {{top[2][2]}} voturi</button>
+            <div class="panel">
+              {% for x in i3 %}
+                {% for j in x %}
+                  <p>{{j}}</p>
+                {% endfor %}
+              {% endfor %}
+            </div>
+
+        </div>
+        <div class="calendar-bottom-right-wrapper">
+          <form action="/api/users" method="POST">
+            <input type="text" id="userName" name="userName" placeholder="Spune-ne cum te numesti!">
+            <p class="error hidden inputError"></p>
+            <input type="text" class='interval' id="interval-1"  name="interval-1">
+            <input type="text" class='interval' id="interval-2"  name="interval-2">
+            <input type="text" class='interval' id="interval-3"  name="interval-3">
+            <button type="submit" id="submit">Valideaza</button>
+          </form> 
+        </div>
       </div>
       
     </div>
 
-    {{top}}
+
     <script>
       const firstName = document.querySelector('#userName');
       const submitBtn = document.querySelector('#submit');
@@ -128,7 +163,21 @@
       }
 
 
-      
+      // Accordion functionality
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      }
     </script>
   </body>
 </html>

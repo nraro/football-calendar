@@ -24,14 +24,13 @@ success = ''
 
 dates = []
 
+
 @views.route('/api/users', methods=['POST'])
 def create_users():
     global success, top3, dates
     entryFound = False
     error = 'Ai selectat deja intervalele: '
     success = 'Te-ai inscris cu succes in perioada: '
-
-    
 
     for n in range(3):
         if request.form['interval-' + str(n + 1)] == '':
@@ -57,21 +56,19 @@ def create_users():
                         pass
 
             if entryFound == False:
-                
+
                 with connection:
                     with connection.cursor() as cursor:
                         cursor.execute(CREATE_USERS_TABLE)
                         cursor.execute(INSERT_USERS_RETURN_ID,
-                            (name, day, interval))
+                                       (name, day, interval))
                 # user_id = cursor.fetchone()[0]
             else:
-                return render_template('index.html', defWeek=defaultWeekday, dates=dates, weekdays=weekdays, intervals=intervals, err=error, success='', top = top3)
-
-    
+                return render_template('index.html', defWeek=defaultWeekday, dates=dates, weekdays=weekdays, intervals=intervals, err=error, success='', top=top3)
 
     with connection:
         with connection.cursor() as cursor:
-            selectQuery = f"select day, interval, count(*) as voturi from users group by 1,2 order by voturi desc limit 3" 
+            selectQuery = f"select day, interval, count(*) as voturi from users group by 1,2 order by voturi desc limit 3"
             cursor.execute(selectQuery)
             top3 = cursor.fetchall()
 
@@ -85,9 +82,23 @@ def home():
 
     with connection:
         with connection.cursor() as cursor:
-            selectQuery = f"select day, interval, count(*) as voturi from users group by 1,2 order by voturi desc limit 3" 
+            selectQuery = f"select day, interval, count(*) as voturi from users group by 1,2 order by voturi desc limit 3"
             cursor.execute(selectQuery)
             top3 = cursor.fetchall()
+
+    with connection:
+        with connection.cursor() as cursor:
+            selectQueryI1 = f"select name from users where day = '{top3[0][0]}' and interval = '{top3[0][1]}'"
+            cursor.execute(selectQueryI1)
+            userNamesI1 = cursor.fetchall()
+
+            selectQueryI2 = f"select name from users where day = '{top3[1][0]}' and interval = '{top3[1][1]}'"
+            cursor.execute(selectQueryI2)
+            userNamesI2 = cursor.fetchall()
+
+            selectQueryI3 = f"select name from users where day = '{top3[2][0]}' and interval = '{top3[2][1]}'"
+            cursor.execute(selectQueryI3)
+            userNamesI3 = cursor.fetchall()
 
     dates = []
     for n in range(7):
@@ -99,10 +110,7 @@ def home():
     intervals = ['12:00 - 14:00', '14:00 - 16:00',
                  '16:00 - 18:00', '18:00 - 20:00']
 
-
-    
-
-    return render_template('index.html', defWeek=defaultWeekday, dates=dates, weekdays=weekdays, intervals=intervals, err='', success=success, top=top3)
+    return render_template('index.html', defWeek=defaultWeekday, dates=dates, weekdays=weekdays, intervals=intervals, err='', success=success, top=top3, i1=userNamesI1, i2=userNamesI2, i3=userNamesI3)
 
 
 @views.route('/thank-you')

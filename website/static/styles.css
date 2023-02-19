@@ -21,6 +21,12 @@ button {
     padding: 10px 0;
 }
 
+h1 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
 .calendar-day button:hover {
     background: #20bf6b;
     color: #fff;
@@ -37,7 +43,7 @@ button {
     width: 100%;
     height: 100vh;
     opacity: 0.7;
-    background: #3867d6;
+    background: linear-gradient(62deg, rgb(53 32 82) 0%, rgb(33 9 221 / 76%) 100%);
 }
 
 .calendar-wrapper {
@@ -89,7 +95,9 @@ h5.calendar-title {
 .calendar-bottom-wrapper {
     margin-top: 25px;
     width: 100%;
-    max-width: 700px;
+    display: flex;
+    max-width: 90%;
+    justify-content: space-around;
 }
 
 input {
@@ -119,7 +127,7 @@ input.interval {
 }
 
 input::placeholder {
-    color: #20bf6b;
+    color: #000;
     opacity: 1;
 }
 
@@ -189,4 +197,63 @@ p.error.hidden {
     50% { transform: translate(-1px, 2px) rotate(-1deg); }
     75% { transform: translate(3px, 1px) rotate(-1deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
-  }
+}
+
+h5.mostVoted {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px;
+    margin-bottom: 2px;
+}
+
+.accordion {
+    position: relative;
+    padding: 10px 40px 10px 20px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.accordion.active {
+    margin-bottom: 0px;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+}
+
+.accordion:hover {
+    background: #20bf6b;
+    color: #fff;
+}
+
+.accordion::before {
+    content: '+';
+    position: absolute;
+    right: 20px;
+}
+
+.accordion.active::before {
+    content: '-';
+    position: absolute;
+    right: 20px;
+}
+
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    border: 1px solid #20bf6b;
+    border-top: none;
+    border-radius: 0 0 3px 3px;
+}
+
+.panel:last-child {
+    border-bottom: none;
+}
+
+.calendar-bottom-right-wrapper {
+    width: 100%;
+    max-width: 700px;
+}
