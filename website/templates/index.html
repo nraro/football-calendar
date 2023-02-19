@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../static/styles.css" rel="stylesheet" type="text/css" >
+    <title>Calendar fotbal</title>
+  </head>
+  <body>
+    <div class="background-wrapper"></div>
+    <div class="calendar-wrapper">
+      {% if err != '' %}
+      <p class="alreadySelectedErr">{{err}}</p>
+      {% endif %}
+      <div class="calendar-top-wrapper">
+        {%for n in range(7) %}
+          <div class="calendar-day">
+            <h5 class="calendar-title">
+              {{weekdays[n]}} - {{dates[n]}}
+            </h5>
+            {% for i in range(4)%} 
+              <button class="{{dates[n]}} {{intervals[i]}}">
+                {{intervals[i]}} 
+              </button>
+            {% endfor %} 
+          </div>
+        {% endfor %} 
+      </div>
+      <p class="error hidden calendarError">Te rugam sa alegi maxim 3 intervale</p>
+      <p class="error hidden intervalError">Te rugam sa alegi cel putin un interval!</p>
+      <div class="calendar-bottom-wrapper">
+        <form action="/api/users" method="POST">
+          <input type="text" id="userName" name="userName" placeholder="Spune-ne cum te numesti!">
+          <p class="error hidden inputError"></p>
+          <input type="text" class='interval' id="interval-1"  name="interval-1">
+          <input type="text" class='interval' id="interval-2"  name="interval-2">
+          <input type="text" class='interval' id="interval-3"  name="interval-3">
+          <button type="submit" id="submit">Valideaza</button>
+        </form> 
+      </div>
+      
+    </div>
+
+    <script>
+      const firstName = document.querySelector('#userName');
+      const submitBtn = document.querySelector('#submit');
+      const intervalField = document.querySelectorAll('.interval');
+      const calendarError = document.querySelector('.calendarError');
+      const intervalError = document.querySelector('.intervalError');
+      const inputError = document.querySelector('.inputError');
+      const button = document.querySelectorAll('.calendar-day button');
+      const chosenData = {
+        interval: [],
+        nume: ''
+      }
+      
+      button.forEach(occurence => {
+        const classList = occurence.classList;
+        occurence.addEventListener('click', () => {
+          intervalError.classList.add('hidden');
+          if (chosenData.interval.length + 1 <= 3) {
+            classList.toggle('active');
+            if(classList.contains('active')) {
+              chosenData.interval.push(classList.value)
+            } else {
+              chosenData.interval.pop(classList.value)
+            }
+          } else {
+            if(classList.contains('active')) {
+              classList.toggle('active');
+              chosenData.interval.pop(classList.value); 
+            } else {
+              calendarError.classList.remove('hidden')
+              setTimeout(() => {
+                calendarError.classList.add('hidden')
+              }, 2500);
+            }
+          }  
+          
+          
+          console.log(chosenData);  
+        })
+      })
+
+      submitBtn.addEventListener('click', () => {
+        validate();
+        chosenData.nume = firstName.value;
+        intervalField[0].value = chosenData.interval[0].replace(' active', '');
+        intervalField[1].value = chosenData.interval[1].replace(' active', '');
+        intervalField[2].value = chosenData.interval[2].replace(' active', ''); 
+
+        console.log(intervalField[0].value);
+      });
+
+      const validate = () => {
+        const testString = (str) => {
+          return /^[A-Za-z0-9]+\s[A-Za-z0-9]+$/i.test(str);
+        }
+        // First name field validation > value not blank
+        if (firstName.value.length === 0) {
+          firstName.classList.add('error');
+          inputError.innerHTML = 'Te rugam frumos sa ne spui cum te numesti';
+          inputError.classList.remove('hidden');
+          event.preventDefault();
+        } else {
+          firstName.classList.remove('error');
+          inputError.classList.add('hidden');
+          // First name field validation > value does not contain any special characters or numbers
+          if (testString(firstName.value) == false) {
+            firstName.classList.add('error');
+            inputError.innerHTML = 'Te rugam sa-ti introduci datele sub forma "Prenume Nume" fara caractere speciale si/sau cifre';
+            inputError.classList.remove('hidden');
+            event.preventDefault();
+          } else {
+            firstName.classList.remove('error');
+            inputError.classList.add('hidden');
+          }
+        }
+
+        if (chosenData.interval.length === 0) {
+          event.preventDefault();
+          intervalError.classList.remove('hidden');
+        }
+
+        return
+      }
+
+
+      
+    </script>
+  </body>
+</html>

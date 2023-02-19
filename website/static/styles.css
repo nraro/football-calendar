@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+button {
+    outline: none;
+    border: 1px solid #20bf6b;
+    cursor: pointer;
+    background: none;
+    transition: all 0.5s ease;
+    margin: 5px auto;
+    font-size: 16px;
+    border-radius: 3px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.calendar-day button:hover {
+    background: #20bf6b;
+    color: #fff;
+    animation: shake 0.2s;
+    animation-iteration-count: infinite;
+}
+
+.calendar-day button.active {
+    background: #20bf6b;
+    color: #fff;
+}
+
+.background-wrapper {
+    width: 100%;
+    height: 100vh;
+    opacity: 0.7;
+    background: #3867d6;
+}
+
+.calendar-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.calendar-top-wrapper {
+    display: flex;
+}
+
+.calendar-day {
+    min-width: 225px;
+    min-height: 225px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    padding: 30px 15px 15px;
+    border: 1px solid #20bf6b;
+}
+
+.calendarError {
+    width: 30%;
+    margin: 20px 0 0;
+    border-radius: 3px;
+}
+
+h5.calendar-title {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #20bf6b;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.calendar-bottom-wrapper {
+    margin-top: 25px;
+    width: 100%;
+    max-width: 700px;
+}
+
+input {
+    margin-top: 25px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #20bf6b;
+    border-radius: 3px;
+    padding: 20px;
+    color: #000;
+    font-size: 18px;
+    transition: all 0.5s ease;
+    text-align: center;
+}
+
+input.error {
+    border: 1px solid #eb3b5a;
+}
+
+input:hover, input:focus {
+    background: #20bf6b;
+    color: #fff;
+}
+
+input.interval {
+    display: none;
+}
+
+input::placeholder {
+    color: #20bf6b;
+    opacity: 1;
+}
+
+input:hover::placeholder {
+    color: #fff;
+}
+
+p.error {
+    color: #fff;
+    background: #eb3b5a;
+    text-align: center;
+    border-radius: 0 0 3px 3px;
+    padding: 5px 0;
+    width: 700px;
+}
+
+p.error.hidden {
+    display: none;
+}
+
+#submit {
+    width: 50%;
+    margin: 25px auto 0;
+    display: block;
+    background: #fff;
+    border: 1px solid #fff;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+    font-size: 18px;
+}
+
+#submit:hover {
+    background: #20bf6b;
+    border: 1px solid #20bf6b;
+    color: #fff;
+}
+
+.alreadySelectedErr {
+    background: #eb3b5a;
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.successMessage {
+    background: #20bf6b;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.homeBtn {
+    background: #fff;
+    padding: 10px 30px;
+    border-radius: 3px;
+    color: #20bf6b;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    25% { transform: translate(-3px, 0px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    75% { transform: translate(3px, 1px) rotate(-1deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }

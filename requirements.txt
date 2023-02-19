@@ -1,0 +1,6 @@
+flask
+pandas
+python-dotenv
+psycopg2-binary
+
+# pip install -r requirements.txt
