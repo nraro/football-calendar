@@ -10,7 +10,17 @@
   <body>
     <div class="background-wrapper"></div>
     <div class="calendar-wrapper">
-        <p class="successMessage">{{success}}</p>  
+        {% set tag = success.split(':')[0] + ':' %}
+        <p class="successMessage"> {{tag}} </p>  
+        {% set success = success.split('Te-ai inscris cu succes in perioada: ')[1] %}
+        {% set success = success.split(', ') %}
+
+        {% for element in success %}
+          {% if element != '' %}
+            <p class="successMessage">{{element}}</p>
+          {% endif %}
+        {% endfor %}  
+
         <form>
             <button class="homeBtn" formaction="/">Acasa</button>
         </form>
