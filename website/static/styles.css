@@ -217,6 +217,7 @@ h5.mostVoted {
     border-bottom: none;
     border-radius: 3px 3px 0 0;
     background: #e3dd19;
+    border-bottom: 1px solid #000;
 }
 
 .accordion:hover {
@@ -242,7 +243,7 @@ h5.mostVoted {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
-    border: 1px solid #e3dd19;
+    border: 1px solid #000;
     border-top: none;
     border-bottom: none;
     border-radius: 0 0 3px 3px;
