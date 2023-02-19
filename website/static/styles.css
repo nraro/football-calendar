@@ -10,15 +10,16 @@
 
 button {
     outline: none;
-    border: 1px solid #20bf6b;
+    color: #000;
     cursor: pointer;
-    background: none;
     transition: all 0.5s ease;
     margin: 5px auto;
     font-size: 16px;
     border-radius: 3px;
     width: 100%;
     padding: 10px 0;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #000;
 }
 
 h1 {
@@ -28,22 +29,22 @@ h1 {
 }
 
 .calendar-day button:hover {
-    background: #20bf6b;
-    color: #fff;
     animation: shake 0.2s;
     animation-iteration-count: infinite;
+    background: #e3dd19;
+    color: #000;
 }
 
 .calendar-day button.active {
-    background: #20bf6b;
-    color: #fff;
+    background: #e3dd19;
+    color: #000;
 }
 
 .background-wrapper {
     width: 100%;
     height: 100vh;
     opacity: 0.7;
-    background: linear-gradient(62deg, rgb(53 32 82) 0%, rgb(33 9 221 / 76%) 100%);
+    background: linear-gradient(62deg, rgb(14 13 14) 0%, rgb(44 44 40 / 76%) 100%);
 }
 
 .calendar-wrapper {
@@ -74,7 +75,6 @@ h1 {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 3px;
     padding: 30px 15px 15px;
-    border: 1px solid #20bf6b;
 }
 
 .calendarError {
@@ -87,7 +87,7 @@ h5.calendar-title {
     font-size: 20px;
     font-weight: 400;
     margin-bottom: 10px;
-    border-bottom: 1px solid #20bf6b;
+    border-bottom: 1px solid #000;
     padding-bottom: 10px;
     text-transform: uppercase;
 }
@@ -104,7 +104,7 @@ input {
     margin-top: 25px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid #20bf6b;
+    border: 1px solid transparent;
     border-radius: 3px;
     padding: 20px;
     color: #000;
@@ -118,21 +118,17 @@ input.error {
 }
 
 input:hover, input:focus {
-    background: #20bf6b;
-    color: #fff;
+    background: #e3dd19;
+    color: #000;
 }
 
 input.interval {
     display: none;
 }
 
-input::placeholder {
+input::placeholder, input:hover::placeholder {
     color: #000;
     opacity: 1;
-}
-
-input:hover::placeholder {
-    color: #fff;
 }
 
 p.error {
@@ -160,9 +156,9 @@ p.error.hidden {
 }
 
 #submit:hover {
-    background: #20bf6b;
-    border: 1px solid #20bf6b;
-    color: #fff;
+    background: #e3dd19;
+    border: 1px solid #e3dd19;
+    color: #000;
 }
 
 .alreadySelectedErr {
@@ -185,10 +181,10 @@ p.error.hidden {
 }
 
 .homeBtn {
-    background: #fff;
     padding: 10px 30px;
     border-radius: 3px;
-    color: #20bf6b;
+    color: #000;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 @keyframes shake {
@@ -213,17 +209,19 @@ h5.mostVoted {
     padding: 10px 40px 10px 20px;
     background: #fff;
     transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .accordion.active {
     margin-bottom: 0px;
     border-bottom: none;
     border-radius: 3px 3px 0 0;
+    background: #e3dd19;
 }
 
 .accordion:hover {
-    background: #20bf6b;
-    color: #fff;
+    background: #e3dd19;
+    color: #000;
 }
 
 .accordion::before {
@@ -244,9 +242,11 @@ h5.mostVoted {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
-    border: 1px solid #20bf6b;
+    border: 1px solid #e3dd19;
     border-top: none;
+    border-bottom: none;
     border-radius: 0 0 3px 3px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .panel:last-child {

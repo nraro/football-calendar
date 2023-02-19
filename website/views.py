@@ -27,7 +27,7 @@ dates = []
 
 @views.route('/api/users', methods=['POST'])
 def create_users():
-    global success, top3, dates
+    global success, top3, dates, defaultWeekday, weekdays, today, weekday
     entryFound = False
     error = 'Ai selectat deja intervalele: '
     success = 'Te-ai inscris cu succes in perioada: '
@@ -78,7 +78,11 @@ def create_users():
 
 @views.route('/', methods=['GET', 'POST'])
 def home():
-    global defaultWeekday, dates, weekdays, intervals, success, top3
+    global defaultWeekday, dates, weekdays, today, weekday, intervals, success, top3
+
+    today = datetime.date.today()
+    weekday = datetime.datetime.now().isocalendar()[2]
+    defaultWeekday = today - datetime.timedelta(days=weekday - 1)
 
     with connection:
         with connection.cursor() as cursor:
