@@ -258,3 +258,82 @@ h5.mostVoted {
     width: 100%;
     max-width: 700px;
 }
+
+
+
+
+
+
+/* Mobile only, no tablet */
+
+@media screen and (max-width: 500px) {
+
+    .background-wrapper {
+        display: none;
+    }
+
+    .calendar-top-wrapper, .calendar-day, .error, .calendar-bottom-wrapper, .calendar-bottom-left-wrapper, .calendar-bottom-right-wrapper, p.error {
+        display: block;
+        width: fit-content;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+    
+    .calendar-wrapper {
+        background: linear-gradient(62deg, rgb(14 13 14) 0%, rgb(44 44 40 / 76%) 100%);
+        display: block;
+        position: relative;
+        min-height: 100%;
+        padding-top: 50px;
+    }
+
+    .calendar-top-wrapper {
+        display: flex;
+        overflow-x: scroll;
+        gap: 10px;
+        width: 100%;
+        padding: 0 5% 20px;
+    }
+
+    .calendar-day {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .calendar-bottom-wrapper {
+        width: 90%;
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 0px auto;
+    }
+
+    .calendar-bottom-left-wrapper {
+        margin-top: 10px;
+    }
+
+    .calendar-bottom-left-wrapper, .calendar-bottom-right-wrapper, #submit {
+        width: 100%;
+    }
+
+    input, #submit {
+        padding: 10px 0;
+    }
+    
+    p.error, .error {
+        width: 90%;
+        margin: 0px auto;
+    }
+
+    #userName {
+        width: 100%;
+        padding: 10px;
+    }
+
+    p.intervalError {
+        position: relative;
+        top: -20px;
+    }
+}
