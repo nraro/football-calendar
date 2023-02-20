@@ -1,14 +1,15 @@
 import sqlite3
+import os.path
 
-connection = sqlite3.connect('database.db')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, "database.db")
 
-
+connection = sqlite3.connect(db_path)
 
 with open('schema.sql') as f:
     connection.executescript(f.read())
 
 cur = connection.cursor()
-
 
 cur.execute("INSERT INTO users (name, day, interval) VALUES (?, ?, ?)",
             ('Silviu Hotoi', '17/02/2023', '12:00 - 14:00')

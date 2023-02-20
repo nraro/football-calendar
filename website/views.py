@@ -1,4 +1,4 @@
-import os
+import os.path
 from flask import render_template, request, redirect, url_for, Blueprint
 import datetime
 import sqlite3
@@ -9,8 +9,12 @@ CREATE_USERS_TABLE = (
 
 INSERT_USERS_RETURN_ID = "INSERT INTO users (name, day, interval) VALUES (?, ?, ?) RETURNING id;"
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, '..', "database.db")
+
+print(db_path)
 def get_db_connection():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     return conn
 
