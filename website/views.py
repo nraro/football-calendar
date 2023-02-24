@@ -118,3 +118,16 @@ def home():
 def thanks():
     global success
     return render_template('thanks.html', success=success)
+
+@views.route('/deleteEntry', methods=["GET","POST"])
+def deleteEntry():
+    day = request.form['day']
+    interval = request.form['interval']
+    name = request.form['name']
+    conn = get_db_connection()
+    query = f"DELETE FROM users where day='{day}' and interval='{interval}' and name='{name}' "
+    conn.execute(query)
+    conn.commit()
+    conn.close()
+    return redirect(url_for('views.home'))
+

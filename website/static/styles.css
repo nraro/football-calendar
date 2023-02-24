@@ -259,6 +259,24 @@ h5.mostVoted {
     max-width: 700px;
 }
 
+.entryWrapper {
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    margin-bottom: 5px;
+}
+
+.deleteEntry {
+    background: #e3dd19;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    line-height: 0.1;
+    margin:0;
+}
+
+.entryWrapper:first-child {
+    padding-top: 5px;
 
 
 
