@@ -39,7 +39,15 @@
             <div class="panel">
               {% for x in i1 %}
                 {% for j in x %}
+                <div class="entryWrapper">
                   <p>{{j}}</p>
+                  <form action="/deleteEntry" method="POST">
+                    <input type="hidden" name="day" value="{{top[0][0]}}">
+                    <input type="hidden" name="name" value="{{j}}">
+                    <input type="hidden" name="interval" value="{{top[0][1]}}">
+                    <button class="deleteEntry" type="submit"> x </button>
+                  </form>
+                </div>
                 {% endfor %}
               {% endfor %}
             </div>
@@ -48,7 +56,16 @@
             <div class="panel">
               {% for x in i2 %}
                 {% for j in x %}
+                <div class="entryWrapper">
                   <p>{{j}}</p>
+                  <form action="/deleteEntry" method="POST">
+                    <input type="hidden" name="day" value="{{top[1][0]}}">
+                    <input type="hidden" name="name" value="{{j}}">
+                    <input type="hidden" name="interval" value="{{top[1][1]}}">
+                    <button class="deleteEntry" type="submit"> x </button>
+                  
+                  </form>
+                </div>
                 {% endfor %}
               {% endfor %}
             </div>
@@ -57,7 +74,15 @@
             <div class="panel">
               {% for x in i3 %}
                 {% for j in x %}
+                <div class="entryWrapper">
                   <p>{{j}}</p>
+                  <form action="/deleteEntry" method="POST">
+                    <input type="hidden" name="day" value="{{top[2][0]}}">
+                    <input type="hidden" name="name" value="{{j}}">
+                    <input type="hidden" name="interval" value="{{top[2][1]}}">
+                    <button class="deleteEntry" type="submit"> x </button>
+                  </form>
+                </div>
                 {% endfor %}
               {% endfor %}
             </div>
